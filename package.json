@@ -11,7 +11,7 @@
     "start": "node server.js",
     "start:dev": "npm run config && npm run helpers && ng serve --disable-host-check",
     "build": "npm run config && npm run helpers && ng build --configuration production --aot --build-optimizer=false",
-    "build:pages": "ng build --output-path docs --base-href /emoji-messenger/",
+    "build:pages": "npm run build -- --base-href=/emoji-messenger/ && rm -rf docs && cp -r www docs && cp docs/index.html docs/404.html",
     "test": "npm run config && npm run helpers && ng test",
     "build:dev": "npm run config && npm run helpers && ng build",
     "helpers": "node ./helpers/write-version.js",
