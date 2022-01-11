@@ -1,0 +1,63 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<!-- <ion-buttons slot="start">
+			<ion-menu-button color="dark"></ion-menu-button>
+		</ion-buttons> -->
+		<ion-title>
+			Encryption Keys
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content>
+	<div class="keys" *ngIf="(keys$ | async) as keys">
+		<ion-list class="key-list">
+			<ion-item *ngFor="let key of keys">
+				<div class="key">
+					<div class="key-name">
+						<ion-icon *ngIf="key.unlocked" name="lock-open-outline"></ion-icon>
+						<ion-icon *ngIf="!key.unlocked" name="lock-closed-outline"></ion-icon>
+						{{key.name}}
+					</div>
+					<div class="buttons">
+						<ion-button (click)="unlockKey(key.id)" *ngIf="!key.unlocked">
+							<ion-icon name="lock-open-outline"></ion-icon>
+						</ion-button>
+						<ion-button (click)="shareKey(key.publicKey)">
+							<ion-icon name="share-outline"></ion-icon>
+						</ion-button>
+						<ion-button (click)="deleteKey(key.id)">
+							<ion-icon name="trash-outline"></ion-icon>
+						</ion-button>
+					</div>
+				</div>
+			</ion-item>
+		</ion-list>
+		<div class="key-fallback" *ngIf="!keys.length">
+			<h2>No Keys</h2>
+			<p>
+				Keys are used to encrypt and and decrypt messages. <br>
+				When a new key is added, two elements are created:
+			</p>
+			<h3>Private Key</h3>
+			<p>
+				A secret key that, as the name suggests, is never shared with anyone. Used to decrypt messages. <br>
+				For extra security, this can be protected with a password when a key is created. <br>
+				If a key is password protected, it will have to be unlocked before decrypting anything. <br>
+				Don't forget or lose the password, it is not recoverable.
+			</p>
+			<h3>Public Key</h3>
+			<p>
+				A key that is shared with anybody that needs to send you messages. <br>
+				This can be shared via plain text or QR code.
+			</p>
+		</div>
+	</div>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<ion-button (click)="generateKey()" expand="block">
+			<ion-icon name="add-circle-outline" slot="start"></ion-icon>
+			<ion-label>Generate New Key</ion-label>
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>

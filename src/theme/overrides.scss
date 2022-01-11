@@ -1,0 +1,43 @@
+/*
+	Add overrides to ion-components
+	or default browser styles hers
+*/
+
+// Adjust overall padding of the page
+ion-content[padding] {
+	--padding-start: 5%;
+	--padding-end: 5%;
+	--padding-top: 5%;
+	--padding-bottom: 5%;
+}
+
+/**
+	Button overrides
+*/
+ion-button {
+	// --background: #0063a1;
+	// --background-hover: #01385b;
+	// --color: white;
+	// --padding-start: 20px;
+	// --padding-end: 20px;
+	// --padding-top: 16px;
+	// --padding-bottom: 16px;
+	// font-size: 1.5rem;
+	// width: 100%;
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+	border: none;
+	-webkit-text-fill-color: white;
+	-webkit-box-shadow: 0 0 0px 1000px #333 inset;
+	transition: background-color 5000s ease-in-out 0s;
+}

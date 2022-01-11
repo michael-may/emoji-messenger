@@ -1,0 +1,12 @@
+.key-list {
+	.key {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+.key-fallback {
+	margin: 10px;
+}

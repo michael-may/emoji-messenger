@@ -1,0 +1,9 @@
+.emojis {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	.emoji {
+		font-size: 1.75rem;
+		padding: 0px 2px;
+	}
+}

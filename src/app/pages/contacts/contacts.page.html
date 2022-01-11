@@ -1,0 +1,42 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<!-- <ion-buttons slot="start">
+			<ion-menu-button color="dark"></ion-menu-button>
+		</ion-buttons> -->
+		<ion-title>
+			Saved Contacts
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content>
+	<div class="contacts" *ngIf="(contacts$ | async) as contacts">
+		<ion-list class="contact-list">
+			<ion-item *ngFor="let contact of contacts">
+				<div class="contact">
+					<div class="contact-name">
+						{{contact.name}}
+					</div>
+					<div class="buttons">
+						<ion-button (click)="showPublicKey(contact.publicKey)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+						</ion-button>
+						<ion-button (click)="deleteContact(contact.id)">
+							<ion-icon name="trash-outline"></ion-icon>
+						</ion-button>
+					</div>
+				</div>
+			</ion-item>
+		</ion-list>
+		<div class="contact-fallback" *ngIf="!contacts.length">
+			<h2>No Contacts</h2>
+		</div>
+	</div>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<ion-button (click)="addContact()" expand="block">
+			<ion-icon name="add-circle-outline" slot="start"></ion-icon>
+			<ion-label>Add Contact</ion-label>
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>

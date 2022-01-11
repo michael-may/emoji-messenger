@@ -1,0 +1,39 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<ion-title>
+			Send Message
+		</ion-title>
+		<ion-buttons slot="primary">
+			<ion-button (click)="dismiss()">
+				<ion-icon slot="icon-only" name="close"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar> 
+</ion-header>
+<ion-content>
+	<div class="message" *ngIf="message">
+		<img [src]="message.imageData" *ngIf="message.imageData && !message.dataRaw">
+		<app-encoded-image
+			*ngIf="message.dataRaw"
+			[emoji]="message.emoji"
+			[backgroundColor]="message.backgroundColor"
+			[dataRaw]="message.dataRaw"
+		></app-encoded-image>
+	</div>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<ion-button expand="block" (click)="share()">
+			<ion-icon name="image-outline" slot="start"></ion-icon>
+			<ion-label>Share as Image</ion-label>
+		</ion-button>
+		<ion-button expand="block" (click)="shareQR()" *ngIf="message.dataRaw">
+			<ion-icon name="qr-code-outline" slot="start"></ion-icon>
+			<ion-label>Share as QR Code</ion-label>
+		</ion-button>
+		<ion-button expand="block" (click)="delete()">
+			<ion-icon name="trash-outline" slot="start"></ion-icon>
+			<ion-label>Delete Message</ion-label>
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>

@@ -1,0 +1,58 @@
+<ng-container *ngIf="{
+	conversation: conversation$ | async,
+	contact: contact$ | async,
+	key: key$ | async
+} as data">
+	<ion-header translucent="true">
+		<ion-toolbar color="primary">
+			<ion-buttons slot="start">
+				<ion-back-button></ion-back-button>
+			</ion-buttons>
+			<!-- <ion-buttons slot="start">
+				<ion-menu-button color="dark"></ion-menu-button>
+			</ion-buttons> -->
+			<ion-title>
+				{{name}}
+			</ion-title>
+		</ion-toolbar>
+	</ion-header>
+	<ion-content>
+		<div class="message-list">
+			<div 
+				*ngFor="let message of data.conversation.messages"
+				[class.right]="message.type === MessageType.Outgoing"
+				class="message"
+				(click)="decodeMessage(message)"
+			>
+				<div class="message-inner">
+					<img [src]="message.imageData" *ngIf="!message.dataRaw">
+					<app-encoded-image
+						*ngIf="message.dataRaw"
+						[emoji]="message.emoji"
+						[backgroundColor]="message.backgroundColor"
+						[dataRaw]="message.dataRaw"
+					></app-encoded-image>
+					<div class="icon">
+						<ion-icon name="share-outline" *ngIf="message.type === MessageType.Outgoing"></ion-icon>
+						<ion-icon name="expand-outline" *ngIf="message.type === MessageType.Incoming"></ion-icon>
+					</div>
+				</div>
+			</div>
+			<div *ngIf="!data.conversation.messages?.length">
+				No messages in this conversation yet.
+			</div>
+		</div>
+	</ion-content>
+	<ion-footer>
+		<ion-toolbar>
+			<ion-button (click)="importMessage()" expand="block" [disabled]="!key || !contact">
+				<ion-icon name="add-circle-outline" slot="start"></ion-icon>
+				<ion-label>Import Message</ion-label>
+			</ion-button>
+			<ion-button (click)="createMessage()" expand="block" [disabled]="!key || !contact">
+				<ion-icon name="add-circle-outline" slot="start"></ion-icon>
+				<ion-label>Create New Message</ion-label>
+			</ion-button>
+		</ion-toolbar>
+	</ion-footer>
+</ng-container>

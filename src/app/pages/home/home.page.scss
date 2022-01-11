@@ -1,0 +1,15 @@
+.conversation-item {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	.conversation-name {
+		flex: 1;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		cursor: pointer;
+	}
+}
+.conversation-fallback {
+	margin: 10px;
+}

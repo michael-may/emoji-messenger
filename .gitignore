@@ -1,0 +1,9 @@
+/.angular/cache
+node_modules
+.DS_Store
+.env
+www
+!.env.example
+environment.ts
+.npmrc
+exports

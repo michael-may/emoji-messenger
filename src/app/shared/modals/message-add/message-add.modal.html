@@ -1,0 +1,74 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<ion-title>
+			Add new Message
+		</ion-title>
+		<ion-buttons slot="primary">
+			<ion-button (click)="dismiss()">
+				<ion-icon slot="icon-only" name="close"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar> 
+</ion-header>
+<ion-content>
+	<form [formGroup]="newMessageForm">
+		<ion-item>
+			<ion-label>
+				From:
+			</ion-label>
+			<ion-input disabled value="{{fromName}}"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label>
+				To:
+			</ion-label>
+			<ion-input disabled value="{{toName}}"></ion-input>
+		</ion-item>
+		<!-- <ion-item>
+			<ion-label>
+				Keep a Decryptable Copy?
+			</ion-label>
+			<ion-checkbox formControlName="saveLocal"></ion-checkbox>
+		</ion-item> -->
+		<ion-item>
+			<ion-label>
+				Background Color:
+			</ion-label>
+			<input type="color" formControlName="backgroundColor" (ngModelChange)="setBackgroundColor()">
+			<ion-button (click)="clearBackgroundColor()">Clear</ion-button>
+		</ion-item>
+		<ion-item>
+			<ion-label>
+				Background:
+			</ion-label>
+			<div>
+				{{pickedEmoji}}
+			</div>
+			<ion-button (click)="showEmojiPicker = !showEmojiPicker">Select</ion-button>
+			<ion-button (click)="setBackground(null)">Remove</ion-button>
+		</ion-item>
+		<ion-item [class.active]="showEmojiPicker" class="collapsible">
+			<app-emoji-picker (selected)="setBackground($event)"></app-emoji-picker>
+		</ion-item>
+		<ion-item>
+			<ion-label position="floating">Message</ion-label>
+			<ion-textarea
+				ngDefaultControl
+				formControlName="message"
+				type="text"
+				required
+				debounce="500"
+				(ionChange)="encrypt()"
+			></ion-textarea>
+			<ion-note>
+				{{encodedBytes}} / {{MAX_ENCODED_BYTES}}
+			</ion-note>
+		</ion-item>
+	</form>
+	<canvas #canvas></canvas>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<ion-button expand="block" [disabled]="!renderedImage" (click)="saveMessage()">Save</ion-button>
+	</ion-toolbar>
+</ion-footer>

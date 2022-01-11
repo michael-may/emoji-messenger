@@ -1,0 +1,58 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<ion-title>
+			Import Message
+		</ion-title>
+		<ion-buttons slot="primary">
+			<ion-button (click)="dismiss()">
+				<ion-icon slot="icon-only" name="close"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar> 
+</ion-header>
+<ion-content>
+	<form [formGroup]="newMessageForm">
+		<ion-item>
+			<ion-label>
+				From:
+			</ion-label>
+			<ion-input disabled value="{{fromName}}"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label>
+				To:
+			</ion-label>
+			<ion-input disabled value="{{toName}}"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-icon name="image-outline" slot="start"></ion-icon>
+			<ion-label>
+				Image:
+			</ion-label>
+			<input type="file" formControlName="file" (change)="parseFile($event)">
+		</ion-item>
+		<ion-item>
+			<ion-icon name="qr-code-outline" slot="start"></ion-icon>
+			<ion-label>
+				QR File:
+			</ion-label>
+			<input type="file" formControlName="file" (change)="parseFileQR($event)">
+		</ion-item>
+		<ion-item>
+			<ion-icon name="qr-code-outline" slot="start"></ion-icon>
+			<ion-label>
+				Scan QR Code
+			</ion-label>
+			<ion-button (click)="scanQR()">
+				<ion-icon name="camera-outline" slot="start"></ion-icon>
+				<ion-label>Open Camera</ion-label>
+			</ion-button>
+		</ion-item>
+	</form>
+	<img [src]="importedFile" *ngIf="importedFile">
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<ion-button expand="block" [disabled]="!importedFile" (click)="saveMessage()">Save</ion-button>
+	</ion-toolbar>
+</ion-footer>

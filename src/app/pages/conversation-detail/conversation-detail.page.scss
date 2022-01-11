@@ -1,0 +1,43 @@
+.keys {
+	width: 100%;
+}
+
+canvas {
+	width: 100%;
+	height: 100%;
+	border: 1px solid green;
+	image-rendering: pixelated;
+}
+
+.message-list {
+	display: flex;
+	flex-direction: column;
+	.message {
+		padding: 5px 15px;
+		flex: 1;
+		cursor: pointer;
+		&.right {
+			align-self: flex-end;
+		}
+		.message-inner {
+			position: relative;
+			display: inline-block;
+			img {
+				border-radius: 3px;
+				overflow: hidden;
+			}
+			.icon {
+				position: absolute;
+				padding: 3px;
+				bottom: 3px;
+				right: 0px;
+				border-radius: 6px 3px 3px 6px;
+				border-top-right-radius: 0px;
+				border-bottom-left-radius: 0px;
+				overflow: hidden;
+				background: rgba(0, 0, 0, .65);
+			}
+		}
+		
+	}
+}

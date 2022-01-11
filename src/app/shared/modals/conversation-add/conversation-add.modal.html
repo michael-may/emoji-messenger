@@ -1,0 +1,69 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<ion-title>
+			Create new Conversation
+		</ion-title>
+		<ion-buttons slot="primary">
+			<ion-button (click)="dismiss()">
+				<ion-icon slot="icon-only" name="close"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar> 
+</ion-header>
+<ion-content>
+	<form [formGroup]="newConversationForm">
+		<ion-item>
+			<ion-label position="floating">
+				Conversation Name
+			</ion-label>
+			<ion-input formControlName="name" ngDefaultControl placeholder="Name" type="text"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="(contacts$ | async) as contacts">
+			<ng-container *ngIf="contacts.length">
+				<ion-label>
+					To:
+				</ion-label>
+				<ion-select formControlName="to" ngDefaultControl placeholder="Select a Contact" (ionChange)="updateTo($event)">
+					<!-- <ion-select-option value="">
+						Select a contact
+					</ion-select-option> -->
+					<ion-select-option *ngFor="let contact of contacts" value="{{contact.id}}">
+						{{contact.name}}
+					</ion-select-option>
+				</ion-select>
+			</ng-container>
+			<ng-container *ngIf="!contacts.length">
+				<ion-label>
+					No saved contacts
+				</ion-label>
+				<ion-button (click)="addContact()">Add Contact</ion-button>
+			</ng-container>
+		</ion-item>
+		<ion-item *ngIf="(keys$ | async) as keys">
+			<ng-container *ngIf="keys.length">
+				<ion-label>
+					From:
+				</ion-label>
+				<ion-select formControlName="from" ngDefaultControl placeholder="Select a Key" (ionChange)="updateFrom($event)">
+					<!-- <ion-select-option>
+						Select a Key
+					</ion-select-option> -->
+					<ion-select-option *ngFor="let key of keys" [value]="key.id">
+						{{key.name}}
+					</ion-select-option>
+				</ion-select>
+			</ng-container>
+			<ng-container *ngIf="!keys.length">
+				<ion-label>
+					No saved keys
+				</ion-label>
+				<ion-button (click)="createKey()">Create Key</ion-button>
+			</ng-container>
+		</ion-item>
+	</form>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<ion-button expand="block" [disabled]="!newConversationForm.valid" (click)="saveConversation()">Save</ion-button>
+	</ion-toolbar>
+</ion-footer>

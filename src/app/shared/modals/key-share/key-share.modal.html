@@ -1,0 +1,34 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<ion-title>
+			Share Public Key
+		</ion-title>
+		<ion-buttons slot="primary">
+			<ion-button (click)="dismiss()">
+				<ion-icon slot="icon-only" name="close"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar> 
+</ion-header>
+<ion-content>
+	<div class="key" *ngIf="key">
+		<ion-item *ngIf="imageData">
+			<img [src]="imageData">
+		</ion-item>
+		<ion-item>
+			<ion-textarea [value]="key" auto-grow></ion-textarea>
+		</ion-item>
+	</div>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<ion-button expand="block" (click)="copy()">
+			<ion-icon name="image-outline" slot="start"></ion-icon>
+			<ion-label>Copy to Clipboard</ion-label>
+		</ion-button>
+		<ion-button expand="block" (click)="shareQR()" *ngIf="imageData">
+			<ion-icon name="qr-code-outline" slot="start"></ion-icon>
+			<ion-label>Share as QR Code</ion-label>
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>

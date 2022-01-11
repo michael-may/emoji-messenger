@@ -1,0 +1,17 @@
+<ng-container *ngIf="emojiLists">
+	<div class="category" *ngFor="let cat of emojiLists">
+		<h1>
+			{{cat.name}}
+		</h1>
+		<div class="emojis">
+			<ng-container *ngFor="let e of cat.emojis">
+				<div *ngIf="!e?.primary" class="emoji" (click)="addEmoji(e)">
+					{{e}}
+				</div>
+				<div *ngIf="e.primary" class="emoji emoji-picker" (click)="addEmoji(e.primary)">
+					{{e.primary}}
+				</div>
+			</ng-container>
+		</div>
+	</div>
+</ng-container>

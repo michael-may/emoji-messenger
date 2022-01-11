@@ -1,0 +1,54 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<!-- <ion-buttons slot="start">
+			<ion-menu-button color="dark"></ion-menu-button>
+		</ion-buttons> -->
+		<ion-title>
+			Conversations
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content>
+	<div class="conversations" *ngIf="(conversations$ | async) as conversations">
+		<ion-list class="conversation-list">
+			<ion-item *ngFor="let conversation of conversations">
+				<div class="conversation-item">
+					<div class="conversation-name" [routerLink]="['/conversations', conversation.id]">
+						{{ conversation.name }}
+					</div>
+					<div class="buttons">
+						<ion-button (click)="deleteConversation(conversation.id)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+					</div>
+				</div>
+			</ion-item>
+		</ion-list>
+		<div class="conversation-fallback" *ngIf="!conversations.length">
+			<h2>No Conversations</h2>
+			<p>
+				Conversations store encrypted exchanges between 
+				your contacts and any of your keys.
+			</p>
+			<p>
+				To get started, you'll want to make sure you've 
+				generated at least one key, and shared it with anyone 
+				you want to exchange messages with.
+			</p>
+			<p>
+				If you haven't generated any keys:<br>
+				<ion-button [routerLink]="['/keys']">Generate Keys</ion-button>
+			</p>
+			<p>
+				If you haven't added any contacts:<br>
+				<ion-button [routerLink]="['/contacts']">Add Contacts</ion-button>
+			</p>
+		</div>
+	</div>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<ion-button (click)="addConversation()" expand="block">
+			<ion-icon name="add-circle-outline" slot="start"></ion-icon>
+			<ion-label>Start New Conversation</ion-label>
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>

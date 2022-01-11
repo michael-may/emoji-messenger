@@ -1,0 +1,41 @@
+<ion-app>
+	<!-- <ion-menu side="start" menuId="first" contentId="main">
+		<ion-header translucent="true">
+			<ion-toolbar color="primary">
+				<ion-title>Menu</ion-title>
+			</ion-toolbar>
+		</ion-header>
+		<ion-content>
+			<ion-list>
+				<ion-item 
+					*ngFor="let route of routes"
+					[class.active]="route.active"
+					[routerLink]="route.path"
+					(click)="menuClose()"
+				>
+					<ion-icon name="{{(route.active) ? route.iconActive : route.icon}}"></ion-icon>
+					<ion-label>
+						{{route.name}}
+					</ion-label>
+				</ion-item>
+			</ion-list>
+		</ion-content>
+	</ion-menu> -->
+	<ion-router-outlet id="main"></ion-router-outlet>
+	<ion-tabs>
+		<ion-tab-bar slot="bottom">
+			<ion-tab-button
+				*ngFor="let route of routes"
+				[class.selected]="route.active"
+				[class.tab-selected]="route.active"
+				[routerLink]="route.path"
+				color="primary"
+			>
+				<ion-icon name="{{(route.active) ? route.iconActive : route.icon}}"></ion-icon>
+				<ion-label>
+					{{route.name}}
+				</ion-label>
+			</ion-tab-button>
+		</ion-tab-bar>
+	</ion-tabs>
+</ion-app>

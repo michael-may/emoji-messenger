@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Encrypted Messaging</title>
+
+		<base href="/" />
+
+		<meta
+			name="viewport"
+			content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+
+		<link rel="icon" type="image/png" href="assets/icon/favicon.png" />
+
+		<!-- Add to homescreen for iOS -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	</head>
+	<body>
+		<app-root></app-root>
+		<script type="text/javascript">
+			window.appVersion = '1.0.0';
+		</script>
+		<!--
+			VH fix for mobile browsers
+			usage:
+				height: calc(var(--vh, 1vh) * 100);
+		-->
+		<script type="text/javascript">
+			function fixVH() {
+				// First, get the viewport height and multiply it by 1% to get a value for a vh unit.
+				let vh = window.innerHeight * 0.01;
+				// Then, set the value in the --vh custom property to the root of the document.
+				document.documentElement.style.setProperty('--vh', `${vh}px`);
+			}
+
+			// Listen to the resize event.
+			window.addEventListener('resize', fixVH);
+			// Initialize.
+			fixVH();
+		</script>
+		<!-- End VH fix for mobile browsers -->
+	</body>
+</html>

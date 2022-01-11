@@ -1,0 +1,48 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<ion-title>
+			Add new Contact
+		</ion-title>
+		<ion-buttons slot="primary">
+			<ion-button (click)="dismiss()">
+				<ion-icon slot="icon-only" name="close"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar> 
+</ion-header>
+<ion-content>
+	<form [formGroup]="newContactForm">
+		<ion-item>
+			<ion-label position="floating">
+				Contact Name
+			</ion-label>
+			<ion-input ngDefaultControl formControlName="name" placeholder="Name" type="text" required></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="floating">Public Key</ion-label>
+			<ion-textarea ngDefaultControl formControlName="publicKey" type="text" required></ion-textarea>
+		</ion-item>
+		<ion-item>
+			<ion-icon name="qr-code-outline" slot="start"></ion-icon>
+			<ion-label>
+				QR File:
+			</ion-label>
+			<input type="file" formControlName="file" (change)="parseFileQR($event)">
+		</ion-item>
+		<ion-item>
+			<ion-icon name="qr-code-outline" slot="start"></ion-icon>
+			<ion-label>
+				Scan QR Code
+			</ion-label>
+			<ion-button (click)="scanQR()">
+				<ion-icon name="camera-outline" slot="start"></ion-icon>
+				<ion-label>Open Camera</ion-label>
+			</ion-button>
+		</ion-item>
+	</form>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<ion-button expand="block" [disabled]="!newContactForm.valid" (click)="saveContact()">Save</ion-button>
+	</ion-toolbar>
+</ion-footer>

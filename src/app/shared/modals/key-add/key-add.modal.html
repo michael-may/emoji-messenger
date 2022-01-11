@@ -1,0 +1,33 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<ion-title>
+			Add new Encryption Key
+		</ion-title>
+		<ion-buttons slot="primary">
+			<ion-button (click)="dismiss()">
+				<ion-icon slot="icon-only" name="close"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar> 
+</ion-header>
+<ion-content>
+	<form [formGroup]="newKeyForm">
+		<ion-item>
+			<ion-label position="floating">Name</ion-label>
+			<ion-input ngDefaultControl formControlName="name" type="text" required></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="floating">Password</ion-label>
+			<ion-input ngDefaultControl formControlName="password" type="password"></ion-input>
+		</ion-item>
+		<ion-item *ngIf="newKeyForm.get('password').value?.length && newKeyForm.get('password').valid">
+			<ion-label position="floating">Confirm Password</ion-label>
+			<ion-input ngDefaultControl formControlName="passwordConfirm" type="password"></ion-input>
+		</ion-item>
+	</form>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<ion-button expand="block" [disabled]="!newKeyForm.valid" (click)="saveEncryptionKey()">Save</ion-button>
+	</ion-toolbar>
+</ion-footer>
