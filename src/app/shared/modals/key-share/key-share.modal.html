@@ -26,14 +26,14 @@
 			<ion-row>
 				<ion-col>
 					<ion-button expand="block" (click)="copy()">
-						<ion-icon name="image-outline" slot="start"></ion-icon>
-						<ion-label>Copy to Clipboard</ion-label>
+						<ion-icon name="clipboard-outline" slot="start"></ion-icon>
+						<ion-label>Copy Text</ion-label>
 					</ion-button>
 				</ion-col>
 				<ion-col>
 					<ion-button expand="block" (click)="shareQR()" *ngIf="imageData">
 						<ion-icon name="qr-code-outline" slot="start"></ion-icon>
-						<ion-label>Share as QR Code</ion-label>
+						<ion-label>Share QR Code</ion-label>
 					</ion-button>
 				</ion-col>
 			</ion-row>
