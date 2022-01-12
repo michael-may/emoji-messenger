@@ -45,14 +45,22 @@
 	</ion-content>
 	<ion-footer>
 		<ion-toolbar>
-			<ion-button (click)="importMessage()" expand="block" [disabled]="!key || !contact">
-				<ion-icon name="add-circle-outline" slot="start"></ion-icon>
-				<ion-label>Import Message</ion-label>
-			</ion-button>
-			<ion-button (click)="createMessage()" expand="block" [disabled]="!key || !contact">
-				<ion-icon name="add-circle-outline" slot="start"></ion-icon>
-				<ion-label>Create New Message</ion-label>
-			</ion-button>
+			<ion-grid>
+				<ion-row>
+					<ion-col>
+						<ion-button (click)="importMessage()" expand="block" [disabled]="!key || !contact">
+							<ion-icon name="download-outline" slot="start"></ion-icon>
+							<ion-label>Import Message</ion-label>
+						</ion-button>
+					</ion-col>
+					<ion-col>
+						<ion-button (click)="createMessage()" expand="block" [disabled]="!key || !contact">
+							<ion-icon name="create-outline" slot="start"></ion-icon>
+							<ion-label>Create New Message</ion-label>
+						</ion-button>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
 		</ion-toolbar>
 	</ion-footer>
 </ng-container>

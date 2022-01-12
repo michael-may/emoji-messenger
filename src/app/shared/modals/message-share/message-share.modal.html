@@ -23,17 +23,29 @@
 </ion-content>
 <ion-footer>
 	<ion-toolbar>
-		<ion-button expand="block" (click)="share()">
-			<ion-icon name="image-outline" slot="start"></ion-icon>
-			<ion-label>Share as Image</ion-label>
-		</ion-button>
-		<ion-button expand="block" (click)="shareQR()" *ngIf="message.dataRaw">
-			<ion-icon name="qr-code-outline" slot="start"></ion-icon>
-			<ion-label>Share as QR Code</ion-label>
-		</ion-button>
-		<ion-button expand="block" (click)="delete()">
-			<ion-icon name="trash-outline" slot="start"></ion-icon>
-			<ion-label>Delete Message</ion-label>
-		</ion-button>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<ion-button expand="block" (click)="share()">
+						<ion-icon name="image-outline" slot="start"></ion-icon>
+						<ion-label>Share as Image</ion-label>
+					</ion-button>
+				</ion-col>
+				<ion-col>
+					<ion-button expand="block" (click)="shareQR()" *ngIf="message.dataRaw">
+						<ion-icon name="qr-code-outline" slot="start"></ion-icon>
+						<ion-label>Share as QR Code</ion-label>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<ion-button expand="block" (click)="delete()" color="danger">
+						<ion-icon name="trash-outline" slot="start"></ion-icon>
+						<ion-label>Delete Message</ion-label>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
 	</ion-toolbar>
 </ion-footer>

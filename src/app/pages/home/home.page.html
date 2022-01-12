@@ -17,7 +17,9 @@
 						{{ conversation.name }}
 					</div>
 					<div class="buttons">
-						<ion-button (click)="deleteConversation(conversation.id)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+						<ion-button (click)="deleteConversation(conversation.id)" color="danger">
+							<ion-icon name="trash-outline"></ion-icon>
+						</ion-button>
 					</div>
 				</div>
 			</ion-item>
@@ -46,9 +48,15 @@
 </ion-content>
 <ion-footer>
 	<ion-toolbar>
-		<ion-button (click)="addConversation()" expand="block">
-			<ion-icon name="add-circle-outline" slot="start"></ion-icon>
-			<ion-label>Start New Conversation</ion-label>
-		</ion-button>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<ion-button (click)="addConversation()" expand="block">
+						<ion-icon name="newspaper-outline" slot="start"></ion-icon>
+						<ion-label>Start New Conversation</ion-label>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
 	</ion-toolbar>
 </ion-footer>
