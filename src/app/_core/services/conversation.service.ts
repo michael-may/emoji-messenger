@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Crypto } from '../utils/crypto.utils';
 
-import { map } from 'rxjs/operators';
+import { CACHE_KEY } from '../constants';
 
 export enum MessageType {
 	Outgoing = 'outgoing',
@@ -34,6 +35,7 @@ export class Conversation {
 	providedIn: 'root'
 })
 export class ConversationService {
+	private readonly cachePath: string = '/conversations';
 	public conversations: Conversation[] = [];
 
 	private conversationSubject: BehaviorSubject<Conversation[]> = new BehaviorSubject<Conversation[]>(this.conversations);
@@ -52,6 +54,38 @@ export class ConversationService {
 		let conversations: Conversation[];
 		try {
 			conversations = JSON.parse(localStorage.getItem('conversations')) ?? [];
+
+			// If no conversations in storage, see if we can pull from cache storage.
+			if(!conversations?.length) {
+				const cache: Cache = await caches
+					.open(CACHE_KEY)
+					.catch(err => {
+						console.log(err);
+						return null;
+					});
+				const response = await cache
+					.match(this.cachePath)
+					.catch(err => {
+						console.log(err);
+						return null;
+					});
+
+				const body = await response
+					.json()
+					.catch(err => {
+						console.log(err);
+						return null;
+					});
+
+				if(body.conversations) {
+					conversations = body.conversations;
+				}
+			} else {
+				this.storeConversationsCache(conversations)
+					.catch(err => {
+						console.log(err);
+					});
+			}
 		} catch(err) {
 			conversations = [];
 		}
@@ -123,5 +157,32 @@ export class ConversationService {
 
 	public storeConversations() {
 		localStorage.setItem('conversations', JSON.stringify(this.conversations));
+
+		this.storeConversationsCache(this.conversations)
+			.catch(err => {
+				console.log(err);
+			});
+	}
+
+	private async storeConversationsCache(conversations: Conversation[]) {
+		// Attempt to store these in cache.
+		const cache: Cache = await caches
+			.open(CACHE_KEY)
+			.catch(err => {
+				console.log(err);
+				return null;
+			});
+
+		if(cache) {
+			await cache
+				.put(this.cachePath, new Response(
+					JSON.stringify({
+						conversations
+					})
+				))
+				.catch(err => {
+					console.log(err);
+				});
+		}
 	}
 }

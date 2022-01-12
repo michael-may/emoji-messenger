@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8"/>
 		<title>Encrypted Messaging</title>
 
-		<base href="/" />
+		<base href="/"/>
 
-		<meta
-			name="viewport"
-			content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-		/>
-		<meta name="format-detection" content="telephone=no" />
-		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="msapplication-tap-highlight" content="no"/>
 
-		<link rel="icon" type="image/png" href="assets/icon/favicon.png" />
+		<link rel="icon" type="image/png" href="assets/icon/favicon.png"/>
 
-		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#047b5e" />
-		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#047b5e" />
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#047b5e"/>
+		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#047b5e"/>
 
 		<!-- Add to homescreen for iOS -->
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	</head>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+		<link rel="manifest" href="manifest.webmanifest">
+</head>
 	<body>
 		<app-root></app-root>
 		<script type="text/javascript">
-			window.appVersion = '1.0.0';
+			window.appVersion = '0.5.0';
 		</script>
 		<!--
 			VH fix for mobile browsers
@@ -46,5 +44,6 @@
 			fixVH();
 		</script>
 		<!-- End VH fix for mobile browsers -->
-	</body>
+	  <noscript>Please enable JavaScript to continue using this application.</noscript>
+</body>
 </html>

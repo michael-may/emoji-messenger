@@ -22,13 +22,21 @@
 </ion-content>
 <ion-footer>
 	<ion-toolbar>
-		<ion-button expand="block" (click)="copy()">
-			<ion-icon name="image-outline" slot="start"></ion-icon>
-			<ion-label>Copy to Clipboard</ion-label>
-		</ion-button>
-		<ion-button expand="block" (click)="shareQR()" *ngIf="imageData">
-			<ion-icon name="qr-code-outline" slot="start"></ion-icon>
-			<ion-label>Share as QR Code</ion-label>
-		</ion-button>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<ion-button expand="block" (click)="copy()">
+						<ion-icon name="image-outline" slot="start"></ion-icon>
+						<ion-label>Copy to Clipboard</ion-label>
+					</ion-button>
+				</ion-col>
+				<ion-col>
+					<ion-button expand="block" (click)="shareQR()" *ngIf="imageData">
+						<ion-icon name="qr-code-outline" slot="start"></ion-icon>
+						<ion-label>Share as QR Code</ion-label>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
 	</ion-toolbar>
 </ion-footer>

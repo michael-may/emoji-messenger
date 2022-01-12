@@ -25,7 +25,7 @@
 						<ion-button (click)="shareKey(key.publicKey)">
 							<ion-icon name="share-outline"></ion-icon>
 						</ion-button>
-						<ion-button (click)="deleteKey(key.id)">
+						<ion-button (click)="deleteKey(key.id)" color="danger">
 							<ion-icon name="trash-outline"></ion-icon>
 						</ion-button>
 					</div>
@@ -55,9 +55,15 @@
 </ion-content>
 <ion-footer>
 	<ion-toolbar>
-		<ion-button (click)="generateKey()" expand="block">
-			<ion-icon name="add-circle-outline" slot="start"></ion-icon>
-			<ion-label>Generate New Key</ion-label>
-		</ion-button>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<ion-button (click)="generateKey()" expand="block">
+						<ion-icon name="repeat-outline" slot="start"></ion-icon>
+						<ion-label>Generate New Key</ion-label>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
 	</ion-toolbar>
 </ion-footer>

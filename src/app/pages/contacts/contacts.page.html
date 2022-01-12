@@ -20,7 +20,7 @@
 						<ion-button (click)="showPublicKey(contact.publicKey)">
 							<ion-icon name="information-circle-outline"></ion-icon>
 						</ion-button>
-						<ion-button (click)="deleteContact(contact.id)">
+						<ion-button (click)="deleteContact(contact.id)" color="danger">
 							<ion-icon name="trash-outline"></ion-icon>
 						</ion-button>
 					</div>
@@ -34,9 +34,15 @@
 </ion-content>
 <ion-footer>
 	<ion-toolbar>
-		<ion-button (click)="addContact()" expand="block">
-			<ion-icon name="add-circle-outline" slot="start"></ion-icon>
-			<ion-label>Add Contact</ion-label>
-		</ion-button>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<ion-button (click)="addContact()" expand="block">
+						<ion-icon name="person-add-outline" slot="start"></ion-icon>
+						<ion-label>Add Contact</ion-label>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
 	</ion-toolbar>
 </ion-footer>

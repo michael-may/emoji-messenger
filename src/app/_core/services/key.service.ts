@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 
 import { Crypto } from '../utils/crypto.utils';
 
+import { CACHE_KEY } from '../constants';
+
 export class StoredEncryptionKey {
 	id: string;
 	name: string;
@@ -22,6 +24,7 @@ export class EncryptionKey extends StoredEncryptionKey {
 	providedIn: 'root'
 })
 export class KeyService {
+	private readonly cachePath: string = '/keys';
 	public keys: EncryptionKey[] = [];
 
 	private keySubject: BehaviorSubject<EncryptionKey[]> = new BehaviorSubject<EncryptionKey[]>(this.keys);
@@ -161,6 +164,38 @@ export class KeyService {
 		let keys: StoredEncryptionKey[];
 		try {
 			keys = JSON.parse(localStorage.getItem('encryptionKeys')) ?? [];
+
+			// If no keys in storage, see if we can pull from cache storage.
+			if(!keys?.length) {
+				const cache: Cache = await caches
+					.open(CACHE_KEY)
+					.catch(err => {
+						console.log(err);
+						return null;
+					});
+				const response = await cache
+					.match(this.cachePath)
+					.catch(err => {
+						console.log(err);
+						return null;
+					});
+
+				const body = await response
+					.json()
+					.catch(err => {
+						console.log(err);
+						return null;
+					});
+
+				if(body.encryptionKeys) {
+					keys = body.encryptionKeys;
+				}
+			} else {
+				this.storeKeysCache(keys)
+					.catch(err => {
+						console.log(err);
+					});
+			}
 		} catch(err) {
 			keys = [];
 		}
@@ -194,6 +229,8 @@ export class KeyService {
 		}
 
 		this.keySubject.next(this.keys);
+
+		this.storeKeys();
 	}
 
 	private storeKeys() {
@@ -210,5 +247,33 @@ export class KeyService {
 			});
 
 		localStorage.setItem('encryptionKeys', JSON.stringify(keys));
+
+		// Populate cache storage.
+		this.storeKeysCache(keys)
+			.catch(err => {
+				console.log(err);
+			});
+	}
+
+	private async storeKeysCache(keys: EncryptionKey[]) {
+		// Attempt to store these in cache.
+		const cache: Cache = await caches
+			.open(CACHE_KEY)
+			.catch(err => {
+				console.log(err);
+				return null;
+			});
+
+		if(cache) {
+			await cache
+				.put(this.cachePath, new Response(
+					JSON.stringify({
+						encryptionKeys: keys
+					})
+				))
+				.catch(err => {
+					console.log(err);
+				});
+		}
 	}
 }
