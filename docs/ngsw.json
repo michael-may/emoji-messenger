@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1642036918124,
+  "timestamp": 1642038579338,
   "index": "/emoji-messenger/index.html",
   "assetGroups": [
     {
@@ -74,7 +74,7 @@
         "/emoji-messenger/9958.65286607553a3ff0.js",
         "/emoji-messenger/common.4c614b900cd2e023.js",
         "/emoji-messenger/index.html",
-        "/emoji-messenger/main.a5fd93d4900b69e7.js",
+        "/emoji-messenger/main.af4dfa238cbd67f7.js",
         "/emoji-messenger/manifest.webmanifest",
         "/emoji-messenger/polyfills-core-js.8d968b5660ae6cb9.js",
         "/emoji-messenger/polyfills-dom.5b316940dbd03e6c.js",
@@ -1512,8 +1512,8 @@
     "/emoji-messenger/assets/icons/icon-96x96.png": "c9106ae1dce08b45a97dac63ad17db23d55fadcc",
     "/emoji-messenger/assets/shapes.svg": "5413e95adabcb2cb639970051f55e0ddb64ace53",
     "/emoji-messenger/common.4c614b900cd2e023.js": "5893dc5dfad9c7f0d39ed92b9b8c6a6bbf3ea158",
-    "/emoji-messenger/index.html": "41a78dbb404b53d58227a542a149907cf505126a",
-    "/emoji-messenger/main.a5fd93d4900b69e7.js": "12a63919a2bad284f591e1911a3c44dd7720a847",
+    "/emoji-messenger/index.html": "8cf1ec96aef14ad54569717b2137aa48af521e32",
+    "/emoji-messenger/main.af4dfa238cbd67f7.js": "dfb24aacbf25bb193b82019c669021004135d133",
     "/emoji-messenger/manifest.webmanifest": "9a088b7c4339228d1082e666ce105dc889bc180c",
     "/emoji-messenger/polyfills-core-js.8d968b5660ae6cb9.js": "c2bc41a69f7a2ec1126dc4e5933f19e5507479aa",
     "/emoji-messenger/polyfills-dom.5b316940dbd03e6c.js": "99e62de10e13e68a16eb9d46f670ecf51c0c6531",
