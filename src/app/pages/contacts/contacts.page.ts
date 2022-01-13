@@ -45,7 +45,7 @@ export class ContactsPage implements OnDestroy {
 	}
 
 	public async deleteContact(id: string) {
-		const confirmed = window.confirm(`Are you absolutely sure? This is unrecoverable.`);
+		const confirmed = window.confirm(`Are you absolutely sure? This is unrecoverable without a backup.`);
 
 		if(confirmed) {
 			this.contactService.removeContact(id);

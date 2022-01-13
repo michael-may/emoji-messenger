@@ -4,8 +4,8 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { MenuController, Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+//import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+//import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 export class Route {
 	name: string;
@@ -26,8 +26,8 @@ export class AppComponent implements OnInit, OnDestroy {
 	
 	constructor(
 		private readonly platform: Platform,
-		private readonly splashScreen: SplashScreen,
-		private readonly statusBar: StatusBar,
+		//private readonly splashScreen: SplashScreen,
+		//private readonly statusBar: StatusBar,
 		private readonly router: Router,
 		private readonly menuController: MenuController
 	) {
@@ -47,12 +47,12 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	initializeApp() {
-		this.platform.ready().then(() => {
-			// Status bar and splash screen
-			// features should be removed for web-only projects.
-			this.statusBar.styleDefault();
-			this.splashScreen.hide();
-		});
+		// this.platform.ready().then(() => {
+		// 	// Status bar and splash screen
+		// 	// features should be removed for web-only projects.
+		// 	this.statusBar.styleDefault();
+		// 	this.splashScreen.hide();
+		// });
 	}
 
 	ngOnInit() {

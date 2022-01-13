@@ -170,7 +170,7 @@ export class ConversationDetailPage implements OnInit {
 			});
 
 		if(this.key.passwordProtected && !this.key.unlocked) {
-			const password = window.prompt('Enter the password for this key.');
+			const password = window.prompt(`Enter the password for the key: ${this.key.name}`);
 			let result: EncryptionKey = await this.keyService
 				.unlockKey(this.key.id, password)
 				.catch(err => {

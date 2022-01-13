@@ -6,6 +6,7 @@ const routes: Routes = [
 	{ path: 'conversations/:id', data: { display: false }, loadChildren: () => import('./pages/conversation-detail/conversation-detail.module').then(m => m.ConversationDetailPageModule ) },
 	{ path: 'keys', data: { name: 'Keys', icon: 'key-outline', iconActive: 'key' }, loadChildren: () => import('./pages/keys/keys.module').then(m => m.KeysPageModule) },
 	{ path: 'contacts', data: { name: 'Contacts', icon: 'people-outline', iconActive: 'people' }, loadChildren: () => import('./pages/contacts/contacts.module').then(m => m.ContactsPageModule) },
+	{ path: 'settings', data: { name: 'Settings', icon: 'settings-outline', iconActive: 'settings' }, loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule) },
 	{ path: '', redirectTo: 'conversations', pathMatch: 'full' },
 	{ path: '*', redirectTo: 'conversations', pathMatch: 'full' }
 ];

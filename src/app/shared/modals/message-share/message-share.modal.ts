@@ -86,7 +86,7 @@ export class MessageShareModal {
 	}
 
 	public async delete() {
-		const confirmed = window.confirm(`Are you absolutely sure? This is unrecoverable.`);
+		const confirmed = window.confirm(`Are you absolutely sure? This is unrecoverable without a backup.`);
 
 		if(confirmed) {
 			this.conversationService
