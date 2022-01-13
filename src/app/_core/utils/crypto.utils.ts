@@ -111,7 +111,7 @@ export class Crypto {
 		buffer.set(salt, 0);
 		buffer.set(iv, salt.byteLength);
 		buffer.set(encryptedContentArr, salt.byteLength + iv.byteLength);
-		
+
 		return btoa(new Uint8Array(buffer).reduce((data, byte) => data + String.fromCharCode(byte), ''));
 	}
 
