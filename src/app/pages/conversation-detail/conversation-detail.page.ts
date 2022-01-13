@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { IonRouterOutlet, ModalController } from '@ionic/angular';
+import { IonContent, IonRouterOutlet, ModalController } from '@ionic/angular';
 
 import { Conversation, ConversationService, Message, MessageType } from '../../_core/services/conversation.service';
 import { EncryptionKey, KeyService } from '../../_core/services/key.service';
@@ -20,7 +20,9 @@ import { ImageUtils } from '../../_core/utils/image.utils';
 	templateUrl: 'conversation-detail.page.html',
 	styleUrls: ['conversation-detail.page.scss'],
 })
-export class ConversationDetailPage implements OnInit {
+export class ConversationDetailPage implements OnInit, AfterViewInit {
+
+	@ViewChild(IonContent, { static: false }) content: IonContent;
 
 	public contact$: Observable<Contact>;
 	public key$: Observable<EncryptionKey>;
@@ -53,15 +55,35 @@ export class ConversationDetailPage implements OnInit {
 					if(!c) {
 						return;
 					}
-					this.name = c.name,
-					this.loadContact(c.toKeyId);
-					this.loadKey(c.fromKeyId);
+					this.name = c.name;
+					if(!this.contact$) {
+						this.loadContact(c.toKeyId);
+					}
+					if(!this.key$) {
+						this.loadKey(c.fromKeyId);
+					}
+					this.scrollToBottom();
 				})
 			);
 	}
 
 	ngOnDestroy() {
 
+	}
+
+	ngAfterViewInit() {
+		setTimeout(() => this.scrollToBottom(), 500);
+	}
+
+	public scrollToBottom() {
+		if(!this.content?.scrollToBottom) {
+			return;
+		}
+		this.content
+			.scrollToBottom(250)
+			.catch(err => {
+				console.log(err);
+			});
 	}
 
 	private loadContact(id: string) {
@@ -110,6 +132,8 @@ export class ConversationDetailPage implements OnInit {
 					}
 				);
 		}
+
+		setTimeout(() => this.scrollToBottom(), 500);
 	}
 
 	public async importMessage() {
@@ -138,6 +162,8 @@ export class ConversationDetailPage implements OnInit {
 					}
 				);
 		}
+
+		this.scrollToBottom();
 	}
 
 	public async decodeMessage(message: Message) {
