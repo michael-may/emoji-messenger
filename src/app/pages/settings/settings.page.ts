@@ -69,7 +69,7 @@ export class SettingsPage implements OnDestroy {
 
 		var link = document.createElement('a');
 		link.href = url;
-		link.target = '_blank';
+		//link.target = '_blank';
 		link.download = `${Date.now()}.messengerbackup`;
 		link.click();
 	}
