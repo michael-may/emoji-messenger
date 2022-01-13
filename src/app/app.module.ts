@@ -4,8 +4,8 @@ import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+//import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+//import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { CoreModule } from './_core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -23,16 +23,16 @@ import { environment } from '../environments/environment';
 		HttpClientModule,
 		CoreModule,
 		SharedModule,
-  ServiceWorkerModule.register('ngsw-worker.js', {
-    enabled: environment.production,
-    // Register the ServiceWorker as soon as the app is stable
-    // or after 30 seconds (whichever comes first).
-    registrationStrategy: 'registerWhenStable:30000'
-  }),
+		ServiceWorkerModule.register('ngsw-worker.js', {
+			enabled: environment.production,
+			// Register the ServiceWorker as soon as the app is stable
+			// or after 10 seconds (whichever comes first).
+			registrationStrategy: 'registerWhenStable:10000'
+		}),
 	],
 	providers: [
-		StatusBar,
-		SplashScreen,
+		//StatusBar,
+		//SplashScreen,
 		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
 	],
 	bootstrap: [AppComponent]

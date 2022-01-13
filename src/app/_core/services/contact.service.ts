@@ -4,8 +4,6 @@ import { map } from 'rxjs/operators';
 
 import { Crypto } from '../utils/crypto.utils';
 
-import { CACHE_KEY } from '../constants';
-
 export class StoredContact {
 	id: string;
 	name: string;
@@ -21,7 +19,6 @@ export class Contact extends StoredContact {
 	providedIn: 'root'
 })
 export class ContactService {
-	private readonly cachePath: string = '/contacts';
 	public contacts: Contact[] = [];
 
 	private contactSubject: BehaviorSubject<Contact[]> = new BehaviorSubject<Contact[]>(this.contacts);
@@ -82,42 +79,11 @@ export class ContactService {
 		this.storeContacts();
 	}
 
-	private async loadContacts() {
+	public async loadContacts() {
+		this.contacts = [];
 		let contacts: StoredContact[];
 		try {
 			contacts = JSON.parse(localStorage.getItem('contacts')) ?? [];
-
-			// If no contacts in storage, see if we can pull from cache storage.
-			if(!contacts?.length) {
-				const cache: Cache = await caches
-					.open(CACHE_KEY)
-					.catch(err => {
-						console.log(err);
-						return null;
-					});
-				const response = await cache
-					.match(this.cachePath)
-					.catch(err => {
-						console.log(err);
-						return null;
-					});
-
-				const body = await response
-					.json()
-					.catch(err => {
-						console.log(err);
-						return null;
-					});
-
-				if(body.contacts) {
-					contacts = body.contacts;
-				}
-			} else {
-				this.storeContactsCache(contacts)
-					.catch(err => {
-						console.log(err);
-					});
-			}
 		} catch(err) {
 			contacts = [];
 		}
@@ -150,33 +116,5 @@ export class ContactService {
 			});
 
 		localStorage.setItem('contacts', JSON.stringify(contacts));
-
-		// Populate cache storage.
-		this.storeContactsCache(contacts)
-			.catch(err => {
-				console.log(err);
-			});
-	}
-
-	private async storeContactsCache(contacts: StoredContact[]) {
-		// Attempt to store these in cache.
-		const cache: Cache = await caches
-			.open(CACHE_KEY)
-			.catch(err => {
-				console.log(err);
-				return null;
-			});
-
-		if(cache) {
-			await cache
-				.put(this.cachePath, new Response(
-					JSON.stringify({
-						contacts
-					})
-				))
-				.catch(err => {
-					console.log(err);
-				});
-		}
 	}
 }

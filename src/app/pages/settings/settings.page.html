@@ -1,0 +1,58 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<!-- <ion-buttons slot="start">
+			<ion-menu-button color="dark"></ion-menu-button>
+		</ion-buttons> -->
+		<ion-title>
+			Settings
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content>
+	<ion-list>
+		<ion-list-header>
+			Your Data
+		</ion-list-header>
+		<ion-item>
+			<ion-label>
+				Export:
+			</ion-label>
+			<ion-button (click)="export()" [disabled]="processingBackup">
+				<ion-spinner *ngIf="processingBackup" slot="start"></ion-spinner>
+				<ion-icon name="download-outline" slot="start" *ngIf="!processingBackup"></ion-icon>
+				<ion-label>Download</ion-label>
+			</ion-button>
+		</ion-item>
+		<ion-item>
+			<ion-label>
+				Import Backup:
+			</ion-label>
+			<ion-button (click)="input.click()" *ngIf="!processingFile">
+				<ion-icon slot="start" name="folder-outline"></ion-icon>
+				<ion-label>Select File</ion-label>
+				<input class="ion-hide" #input type="file" accept=".messengerbackup" slot="end" (change)="import($event)">
+			</ion-button>
+			<ion-spinner *ngIf="processingFile" slot="end"></ion-spinner>
+		</ion-item>
+		<ion-item>
+			<ion-label>
+				Delete:
+			</ion-label>
+			<ion-button (click)="deleteData()" color="danger">
+				<ion-icon name="trash-outline" slot="start"></ion-icon>
+				<ion-label>Delete All Data</ion-label>
+			</ion-button>
+		</ion-item>
+	</ion-list>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-toolbar>
+</ion-footer>

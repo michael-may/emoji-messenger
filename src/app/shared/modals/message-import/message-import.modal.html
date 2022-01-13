@@ -29,14 +29,22 @@
 			<ion-label>
 				Image:
 			</ion-label>
-			<input type="file" formControlName="file" (change)="parseFile($event)">
+			<ion-button (click)="input.click()">
+				<ion-icon name="folder-outline" slot="start"></ion-icon>
+				<ion-label>Select File</ion-label>
+				<input class="ion-hide" #input type="file" formControlName="file" (change)="parseFile($event)">
+			</ion-button>
 		</ion-item>
 		<ion-item>
 			<ion-icon name="qr-code-outline" slot="start"></ion-icon>
 			<ion-label>
 				QR File:
 			</ion-label>
-			<input type="file" formControlName="file" (change)="parseFileQR($event)">
+			<ion-button (click)="input.click()">
+				<ion-icon name="folder-outline" slot="start"></ion-icon>
+				<ion-label>Select File</ion-label>
+				<input class="ion-hide" #input type="file" formControlName="file" (change)="parseFileQR($event)">
+			</ion-button>
 		</ion-item>
 		<ion-item>
 			<ion-icon name="qr-code-outline" slot="start"></ion-icon>
