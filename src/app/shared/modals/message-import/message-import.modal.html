@@ -57,7 +57,9 @@
 			</ion-button>
 		</ion-item>
 	</form>
-	<img [src]="importedFile" *ngIf="importedFile">
+	<div class="image-container">
+		<img [src]="importedFile" *ngIf="importedFile">
+	</div>
 </ion-content>
 <ion-footer>
 	<ion-toolbar>

@@ -3,9 +3,10 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	app-encoded-image {
+	img {
 		width: 100%;
 		max-width: 320px;
+		image-rendering: crisp-edges;
 	}
 	p {
 		padding-left: 3.5vw;
