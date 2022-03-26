@@ -11,6 +11,7 @@ import { KeyAddModal } from './modals/key-add/key-add.modal';
 import { MessageAddModal } from './modals/message-add/message-add.modal';
 import { MessageShareModal } from './modals/message-share/message-share.modal';
 import { MessageImportModal } from './modals/message-import/message-import.modal';
+import { MessageViewModal } from './modals/message-view/message-view.modal';
 import { KeyShareModal } from './modals/key-share/key-share.modal';
 import { QRScanModal } from './modals/qr-scan/qr-scan.modal';
 
@@ -36,6 +37,7 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
 		MessageAddModal,
 		MessageShareModal,
 		MessageImportModal,
+		MessageViewModal,
 		KeyShareModal,
 		QRScanModal,
 		EmojiPickerComponent,
@@ -57,6 +59,7 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
 		MessageAddModal,
 		MessageShareModal,
 		MessageImportModal,
+		MessageViewModal,
 		KeyShareModal,
 		QRScanModal,
 		EmojiPickerComponent,

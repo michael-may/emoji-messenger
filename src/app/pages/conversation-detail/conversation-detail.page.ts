@@ -11,9 +11,7 @@ import { Contact, ContactService } from '../../_core/services/contact.service';
 import { MessageAddModal } from '../../shared/modals/message-add/message-add.modal';
 import { MessageShareModal } from '../../shared/modals/message-share/message-share.modal';
 import { MessageImportModal } from '../../shared/modals/message-import/message-import.modal';
-
-import { Crypto } from '../../_core/utils/crypto.utils';
-import { ImageUtils } from '../../_core/utils/image.utils';
+import { MessageViewModal } from '../../shared/modals/message-view/message-view.modal';
 
 @Component({
 	selector: 'app-conversation-detail',
@@ -187,76 +185,23 @@ export class ConversationDetailPage implements OnInit, AfterViewInit {
 			await modal.onDidDismiss();
 
 			return;
-		}
-
-		const blob = await ImageUtils.read(message.imageData)
-			.catch(err => {
-				console.log(err);
-				return null;
-			});
-
-		if(this.key.passwordProtected && !this.key.unlocked) {
-			const password = window.prompt(`Enter the password for the key: ${this.key.name}`);
-			let result: EncryptionKey = await this.keyService
-				.unlockKey(this.key.id, password)
-				.catch(err => {
-					console.log(err);
-					return null;
+		} else if(message.type === MessageType.Incoming) {
+			const modal: HTMLIonModalElement = await this.modalController
+				.create({
+					component: MessageViewModal,
+					swipeToClose: true,
+					presentingElement: this.routerOutlet.nativeEl,
+					componentProps: {
+						message,
+						conversationId: this.id,
+						key: this.key
+					}
 				});
 
-			if(!result) {
-				alert(`Couldn't unlock key with the given password.`);
-				return;
-			}
+			await modal.present();
 
-			this.key = result;
+			await modal.onDidDismiss();
 		}
-
-		let result = await this.decrypt(blob, this.key.keyPair.privateKey)
-			.catch(err => {
-				console.log(err);
-				return null;
-			});
-
-		if(result) {
-			alert(result);
-		}
-
-		// let result = await this.decrypt(message.data, this.key.keyPair.privateKey, blob)
-		// 	.catch(err => {
-		// 		console.log(err);
-		// 		return null;
-		// 	});
-
-		// if(result) {
-		// 	alert(result);
-		// }
-		
-	}
-
-	private async decrypt(image: number[], privateKey: CryptoKey) {
-		let unpadded = [];
-
-		const minPx = 512;
-		const nextPow = Math.max(1 << (32 - Math.clz32(Math.ceil(Math.sqrt(minPx)))), 128);
-		//const density = Math.floor((minPx / (nextPow * nextPow)) * 100);
-		const density = Math.floor((nextPow * nextPow) / minPx);
-
-		for(let i = 0; i < minPx; i++) {
-			unpadded.push(image[((i * density) * 4) + 3]);
-		}
-
-		// console.log('-------UNPADDED--------');
-		// console.log(unpadded);
-		// console.log('-------/UNPADDED--------');
-
-		const decoded = await Crypto.decrypt(new Uint8Array(unpadded).buffer, privateKey)
-			.catch(err => {
-				console.log(err);
-				return undefined;
-			});
-
-		return decoded;
 	}
 
 	public async deleteMessage(id: string) {

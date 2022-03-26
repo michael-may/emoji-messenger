@@ -1,0 +1,41 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<ion-title>
+			View Message
+		</ion-title>
+		<ion-buttons slot="primary">
+			<ion-button (click)="dismiss()">
+				<ion-icon slot="icon-only" name="close"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar> 
+</ion-header>
+<ion-content>
+	<div class="message" *ngIf="message">
+		<img [src]="message.imageData" *ngIf="message.imageData && !message.dataRaw">
+		<app-encoded-image
+			*ngIf="message.dataRaw"
+			[emoji]="message.emoji"
+			[backgroundColor]="message.backgroundColor"
+			[dataRaw]="message.dataRaw"
+		></app-encoded-image>
+		<p
+			*ngIf="messageText"
+			[innerHtml]="messageText"
+		></p>
+	</div>
+</ion-content>
+<ion-footer>
+	<ion-toolbar>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<ion-button expand="block" (click)="delete()" color="danger">
+						<ion-icon name="trash-outline" slot="start"></ion-icon>
+						<ion-label>Delete Message</ion-label>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-toolbar>
+</ion-footer>
