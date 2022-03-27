@@ -44,6 +44,85 @@
 			</ion-button>
 		</ion-item>
 	</ion-list>
+	<ion-list-header>
+		Help
+	</ion-list-header>
+	<ion-accordion-group [multiple]="true">
+		<ion-accordion value="q1">
+			<ion-item slot="header">
+				<p>Why won't my imported messages won't load?</p>
+			</ion-item>
+			<ion-list slot="content">
+				<p>
+					If you used the image share feature, there's a chance the application you shared to 
+					doesn't support transparency or .png files.
+				</p>
+				<p>
+					Try resending the message as a QR code for better compatibility.
+				</p>
+			</ion-list>
+		</ion-accordion>
+		<ion-accordion value="q2">
+			<ion-item slot="header">
+				<p>Why can't I read messages I've sent to other people?</p>
+			</ion-item>
+			<ion-list slot="content">
+				<p>
+					Messages sent to other people are encrypted with their public key and are only 
+					decryptable with their private key. Since you (hopefully) don't have their private key, 
+					you can't read messages you've sent to them.
+				</p>
+				<p>
+					A future update may add the option to save a copy of the message signed with your own key for reference.
+				</p>
+			</ion-list>
+		</ion-accordion>
+		<ion-accordion value="q3">
+			<ion-item slot="header">
+				<p>Why can my messages only contain 382 characters? That seems oddly specific.</p>
+			</ion-item>
+			<ion-list slot="content">
+				<p>
+					While the output of the message encryption algorithm is 512 bytes long, some of the space is taken up by the message hash. 
+				</p>
+				<p>
+					Messages are encrypted with RSA Optimal Asymmetric Encryption Padding (OAEP) using an SHA-512 hash and an RSA 4096 key. 
+					The maximum length of your message is the total size (512 bytes) minus the hash overhead (130 bytes). 
+					This leaves 382 bytes for your message.
+				</p>
+			</ion-list>
+		</ion-accordion>
+		<ion-accordion value="q4">
+			<ion-item slot="header">
+				<p>Is there a native app available?</p>
+			</ion-item>
+			<ion-list slot="content">
+				<p>
+					No. This application is intended to be completely open and unrestricted.
+				</p>
+				<p>
+					The project is built with Angular and Ionic and could be converted to Capacitor application pretty easily.
+				</p>
+				<p>
+					<a href="https://github.com/michael-may/emoji-messenger" target="_blank">Fork and hack away.</a>
+				</p>
+			</ion-list>
+		</ion-accordion>
+		<ion-accordion value="q5">
+			<ion-item slot="header">
+				<p>Can I host my own instance?</p>
+			</ion-item>
+			<ion-list slot="content">
+				<p>
+					Feel free to host your own instance! The source code is <a href="https://github.com/michael-may/emoji-messenger" target="_blank">here</a>.
+				</p>
+				<p>
+					As long as you don't mess with the encryption or image generation functions, your instance should be compatible with any 
+					other, similar instance.
+				</p>
+			</ion-list>
+		</ion-accordion>
+	</ion-accordion-group>
 </ion-content>
 <ion-footer>
 	<ion-toolbar>

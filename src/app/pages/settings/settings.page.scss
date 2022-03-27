@@ -4,3 +4,11 @@ ion-item ion-button {
 .full-width {
 	width: 100%;
 }
+ion-accordion {
+	ion-list {
+		p {
+			max-width: 400px;
+			margin: 16px;
+		}
+	}
+}
