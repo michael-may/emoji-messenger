@@ -1,11 +1,19 @@
-.contact-list {
-	.contact {
+.contacts {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	.contact-list {
 		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		.contact {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
 	}
-}
-.contact-fallback {
-	margin: 10px;
+	.contact-fallback {
+		margin: 10px;
+		max-width: 400px;
+	}
 }

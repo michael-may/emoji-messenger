@@ -10,7 +10,7 @@
 </ion-header>
 <ion-content>
 	<div class="contacts" *ngIf="(contacts$ | async) as contacts">
-		<ion-list class="contact-list">
+		<ion-list class="contact-list" *ngIf="contacts.length">
 			<ion-item *ngFor="let contact of contacts">
 				<div class="contact">
 					<div class="contact-name">
@@ -29,6 +29,17 @@
 		</ion-list>
 		<div class="contact-fallback" *ngIf="!contacts.length">
 			<h2>No Contacts</h2>
+			<p>
+				Contacts are used to keep track of the public keys of the 
+				people you want to talk to.
+			</p>
+			<p>
+				Contacts can have any name you'd like, just make sure to make it something memorable.
+			</p>
+			<p>
+				Contacts can be imported by scanning the person's public key QR code,
+				uploading an image of their QR code, or by manually adding their public key.
+			</p>
 		</div>
 	</div>
 </ion-content>

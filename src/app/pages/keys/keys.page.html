@@ -10,7 +10,7 @@
 </ion-header>
 <ion-content>
 	<div class="keys" *ngIf="(keys$ | async) as keys">
-		<ion-list class="key-list">
+		<ion-list class="key-list" *ngIf="keys.length">
 			<ion-item *ngFor="let key of keys">
 				<div class="key">
 					<div class="key-name">
@@ -35,19 +35,20 @@
 		<div class="key-fallback" *ngIf="!keys.length">
 			<h2>No Keys</h2>
 			<p>
-				Keys are used to encrypt and and decrypt messages. <br>
+				Keys are used to encrypt and and decrypt messages. 
+				You can share any of your keys with any of your contacts.
 				When a new key is added, two elements are created:
 			</p>
 			<h3>Private Key</h3>
 			<p>
-				A secret key that, as the name suggests, is never shared with anyone. Used to decrypt messages. <br>
-				For extra security, this can be protected with a password when a key is created. <br>
-				If a key is password protected, it will have to be unlocked before decrypting anything. <br>
+				A secret key that, as the name suggests, is never shared with anyone. Used to decrypt messages. 
+				For extra security, this can be protected with a password when a key is created. 
+				If a key is password protected, it will have to be unlocked before decrypting anything. 
 				Don't forget or lose the password, it is not recoverable.
 			</p>
 			<h3>Public Key</h3>
 			<p>
-				A key that is shared with anybody that needs to send you messages. <br>
+				A key that is shared with anybody that needs to send you messages. 
 				This can be shared via plain text or QR code.
 			</p>
 		</div>

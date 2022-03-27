@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { IntroModal } from './modals/intro/intro.modal';
 import { ConversationAddModal } from './modals/conversation-add/conversation-add.modal';
 import { ContactAddModal } from './modals/contact-add/contact-add.modal';
 import { KeyAddModal } from './modals/key-add/key-add.modal';
@@ -31,6 +32,7 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
 		IonicModule
 	],
 	declarations: [
+		IntroModal,
 		ConversationAddModal,
 		ContactAddModal,
 		KeyAddModal,
@@ -53,6 +55,7 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
 	exports: [
 		IonicModule,
 		CommonModule,
+		IntroModal,
 		ConversationAddModal,
 		ContactAddModal,
 		KeyAddModal,

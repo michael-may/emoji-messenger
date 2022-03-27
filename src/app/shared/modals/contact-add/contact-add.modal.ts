@@ -87,8 +87,6 @@ export class ContactAddModal {
 				return;
 			}
 
-			console.log(data);
-
 			this.newContactForm.patchValue({
 				publicKey: data
 			});
@@ -114,8 +112,6 @@ export class ContactAddModal {
 		await modal.present();
 
 		const result = await modal.onDidDismiss();
-
-		console.log(result);
 
 		if(result?.data) {
 			this.processQR(result.data);
