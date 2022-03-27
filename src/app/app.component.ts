@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { MenuController, Platform } from '@ionic/angular';
+import { IonRouterOutlet, MenuController, ModalController, Platform } from '@ionic/angular';
+import { IntroModal } from './shared/modals/intro/intro.modal';
 //import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 //import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -21,15 +22,18 @@ export class Route {
 	styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
+	@ViewChild(IonRouterOutlet, { static : true }) routerOutlet: IonRouterOutlet;
+
 	public routes: Route[] = [];
 	private routeSubscription$?: Subscription;
 	
 	constructor(
-		private readonly platform: Platform,
+		//private readonly platform: Platform,
 		//private readonly splashScreen: SplashScreen,
 		//private readonly statusBar: StatusBar,
 		private readonly router: Router,
-		private readonly menuController: MenuController
+		private readonly menuController: MenuController,
+		private readonly modalController: ModalController
 	) {
 		this.initializeApp();
 		for(const r of this.router.config) {
@@ -55,7 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		// });
 	}
 
-	ngOnInit() {
+	async ngOnInit() {
 		this.routeSubscription$ = this.router.events
 			.pipe(
 				filter(ev => ev instanceof NavigationEnd)
@@ -63,6 +67,21 @@ export class AppComponent implements OnInit, OnDestroy {
 			.subscribe(
 				this.routeWatcher.bind(this)
 			);
+
+		if(!localStorage.getItem('introComplete')) {
+			const modal: HTMLIonModalElement = await this.modalController
+				.create({
+					component: IntroModal,
+					swipeToClose: true,
+					presentingElement: this.routerOutlet.nativeEl
+				});
+
+			await modal.present();
+
+			await modal.onDidDismiss();
+
+			localStorage.setItem('introComplete', 'true');
+		}
 	}
 
 	ngOnDestroy() {

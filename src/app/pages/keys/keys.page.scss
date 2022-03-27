@@ -1,12 +1,20 @@
-.key-list {
-	.key {
+.keys {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	.key-list {
 		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		.key {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
 	}
-}
-
-.key-fallback {
-	margin: 10px;
+	
+	.key-fallback {
+		margin: 10px;
+		max-width: 400px;
+	}
 }

@@ -1,0 +1,64 @@
+<ion-header translucent="true">
+	<ion-toolbar color="primary">
+		<ion-title>
+			Welcome!
+		</ion-title>
+		<ion-buttons slot="primary">
+			<ion-button (click)="dismiss()">
+				<ion-icon slot="icon-only" name="close"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar> 
+</ion-header>
+<ion-content>
+	<div class="intro">
+		<div class="intro-text">
+			<p>
+				This application can be used to send and recieve encrypted messages.
+			</p>
+			<p>
+				It requires no internet connection and no personal information whatsoever.
+			</p>
+			<p>
+				Messages can be delivered with the protocol of your choice, including, but not limited to:
+			</p>
+			<ul>
+				<li>
+					Email
+				</li>
+				<li>
+					Chat apps
+				</li>
+				<li>
+					MMS
+				</li>
+				<li>
+					Printed out pieces of paper
+				</li>
+			</ul>
+			<p>
+				Messages are saved locally as customizable images with your text encoded directly into them; like this one below:
+			</p>
+			<p class="center">
+				<img src="./assets/example.png">
+			</p>
+			<p>
+				Don't worry, emoji are optional. Additionally, messages can be sent as QR codes for greater compatibility.
+			</p>
+			<p>
+				Some other features:
+			</p>
+			<ul>
+				<li>
+					Password-protected keys/messages
+				</li>
+				<li>
+					Per-conversation encryption keys
+				</li>
+				<li>
+					Encrypted application data backup/restore
+				</li>
+			</ul>
+		</div>
+	</div>
+</ion-content>

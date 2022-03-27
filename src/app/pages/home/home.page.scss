@@ -1,15 +1,25 @@
-.conversation-item {
-	width: 100%;
+.conversations {
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	justify-content: flex-start;
 	align-items: center;
-	.conversation-name {
-		flex: 1;
-		padding-top: 10px;
-		padding-bottom: 10px;
-		cursor: pointer;
+	.conversation-list {
+		width: 100%;
+		.conversation-item {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			.conversation-name {
+				flex: 1;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				cursor: pointer;
+			}
+		}
 	}
-}
-.conversation-fallback {
-	margin: 10px;
+	.conversation-fallback {
+		margin: 10px;
+		max-width: 400px;
+	}
 }

@@ -10,7 +10,7 @@
 </ion-header>
 <ion-content>
 	<div class="conversations" *ngIf="(conversations$ | async) as conversations">
-		<ion-list class="conversation-list">
+		<ion-list class="conversation-list" *ngIf="conversations.length">
 			<ion-item *ngFor="let conversation of conversations">
 				<div class="conversation-item">
 					<div class="conversation-name" [routerLink]="['/conversations', conversation.id]">
@@ -35,11 +35,11 @@
 				generated at least one key, and shared it with anyone 
 				you want to exchange messages with.
 			</p>
-			<p>
+			<p *ngIf="!(keys$ | async)?.length">
 				If you haven't generated any keys:<br>
 				<ion-button [routerLink]="['/keys']">Generate Keys</ion-button>
 			</p>
-			<p>
+			<p *ngIf="!(contacts$ | async)?.length">
 				If you haven't added any contacts:<br>
 				<ion-button [routerLink]="['/contacts']">Add Contacts</ion-button>
 			</p>

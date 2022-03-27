@@ -1,7 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
 
 import { Conversation, ConversationService } from '../../_core/services/conversation.service';
@@ -10,39 +9,23 @@ import { Contact, ContactService } from '../../_core/services/contact.service';
 
 import { ConversationAddModal } from '../../shared/modals/conversation-add/conversation-add.modal';
 
-import { Crypto } from '../../_core/utils/crypto.utils';
-import { MessageAddModal } from 'src/app/shared/modals/message-add/message-add.modal';
-
 @Component({
 	selector: 'app-home',
 	templateUrl: 'home.page.html',
 	styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
 	public contacts$: Observable<Contact[]> = this.contactService
-		.contacts$
-		.pipe(
-			map(arr => arr.sort((a, b) => a.created - b.created)),
-			tap(contacts => this.contacts = contacts)
-		);
+		.contacts$;
 
 	public keys$: Observable<EncryptionKey[]> = this.keyService
-		.keys$
-		.pipe(
-			map(arr => arr.sort((a, b) => a.created - b.created)),
-			tap(keys => this.keys = keys)
-		);
+		.keys$;
 
 	public conversations$: Observable<Conversation[]> = this.conversationService
 		.conversations$
 		.pipe(
 			map(arr => arr.sort((a, b) => a.created - b.created))
 		);
-
-
-	private keys: EncryptionKey[] = [];
-	private contacts: Contact[] = [];
 
 	constructor(
 		private readonly keyService: KeyService,
