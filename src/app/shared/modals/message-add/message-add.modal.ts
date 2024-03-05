@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, Output, ViewChild, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { ImageUtils } from '../../../_core/utils/image.utils';
 
@@ -30,11 +30,11 @@ export class MessageAddModal {
 	public readonly MAX_ENCODED_BYTES: number = 382;
 	public encodedBytes: number = 0;
 
-	public newMessageForm = new FormGroup(
+	public newMessageForm = new UntypedFormGroup(
 		{
 			//saveLocal: new FormControl(false),
-			backgroundColor: new FormControl('#ffffff'),
-			message: new FormControl('', [Validators.required, this.checkMessageLength.bind(this)])
+			backgroundColor: new UntypedFormControl('#ffffff'),
+			message: new UntypedFormControl('', [Validators.required, this.checkMessageLength.bind(this)])
 		}
 	);
 
@@ -165,7 +165,7 @@ export class MessageAddModal {
 		this.encodedBytes = new TextEncoder().encode(value).byteLength;
 	}
 
-	private checkMessageLength(group: FormGroup) {
+	private checkMessageLength(group: UntypedFormGroup) {
 		const message = group?.get('message')?.value || '';
 		this.countBytes(message);
 		if(this.encodedBytes > this.MAX_ENCODED_BYTES) {

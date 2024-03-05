@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, Output, ViewChild, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ModalController, ToastController } from '@ionic/angular';
 import jsQR from 'jsqr';
 import { ByteChunk, Chunk } from 'jsqr/dist/decoder/decodeData';
@@ -19,9 +19,9 @@ export class MessageImportModal {
 
 	public importedFile;
 
-	public newMessageForm = new FormGroup(
+	public newMessageForm = new UntypedFormGroup(
 		{
-			file: new FormControl(''),
+			file: new UntypedFormControl(''),
 		}
 	);
 
@@ -99,7 +99,7 @@ export class MessageImportModal {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: QRScanModal,
-				swipeToClose: true,
+				canDismiss: true,
 				presentingElement: this.elementRef.nativeElement
 			});
 

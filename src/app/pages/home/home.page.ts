@@ -39,7 +39,7 @@ export class HomePage {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: ConversationAddModal,
-				swipeToClose: true,
+				canDismiss: true,
 				presentingElement: this.routerOutlet.nativeEl
 			});
 

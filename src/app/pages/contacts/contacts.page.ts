@@ -33,7 +33,7 @@ export class ContactsPage implements OnDestroy {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: ContactAddModal,
-				swipeToClose: true,
+				canDismiss: true,
 				presentingElement: this.routerOutlet.nativeEl
 			});
 

@@ -104,7 +104,7 @@ export class ConversationDetailPage implements OnInit, AfterViewInit {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: MessageAddModal,
-				swipeToClose: true,
+				canDismiss: true,
 				presentingElement: this.routerOutlet.nativeEl,
 				componentProps: {
 					fromName: this.key?.name,
@@ -138,7 +138,7 @@ export class ConversationDetailPage implements OnInit, AfterViewInit {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: MessageImportModal,
-				swipeToClose: true,
+				canDismiss: true,
 				presentingElement: this.routerOutlet.nativeEl,
 				componentProps: {
 					fromName: this.contact?.name,
@@ -172,7 +172,7 @@ export class ConversationDetailPage implements OnInit, AfterViewInit {
 			const modal: HTMLIonModalElement = await this.modalController
 				.create({
 					component: MessageShareModal,
-					swipeToClose: true,
+					canDismiss: true,
 					presentingElement: this.routerOutlet.nativeEl,
 					componentProps: {
 						message,
@@ -189,7 +189,7 @@ export class ConversationDetailPage implements OnInit, AfterViewInit {
 			const modal: HTMLIonModalElement = await this.modalController
 				.create({
 					component: MessageViewModal,
-					swipeToClose: true,
+					canDismiss: true,
 					presentingElement: this.routerOutlet.nativeEl,
 					componentProps: {
 						message,

@@ -5,8 +5,6 @@ import { filter } from 'rxjs/operators';
 
 import { IonRouterOutlet, MenuController, ModalController, Platform } from '@ionic/angular';
 import { IntroModal } from './shared/modals/intro/intro.modal';
-//import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-//import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 export class Route {
 	name: string;
@@ -72,7 +70,7 @@ export class AppComponent implements OnInit, OnDestroy {
 			const modal: HTMLIonModalElement = await this.modalController
 				.create({
 					component: IntroModal,
-					swipeToClose: true,
+					canDismiss: true,
 					presentingElement: this.routerOutlet.nativeEl
 				});
 
