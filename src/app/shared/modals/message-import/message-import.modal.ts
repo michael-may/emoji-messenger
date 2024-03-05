@@ -99,7 +99,7 @@ export class MessageImportModal {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: QRScanModal,
-				canDismiss: true,
+				canDismiss: async (data?: any, role?: string) => role !== 'gesture',
 				presentingElement: this.elementRef.nativeElement
 			});
 

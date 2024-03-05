@@ -104,7 +104,7 @@ export class ConversationDetailPage implements OnInit, AfterViewInit {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: MessageAddModal,
-				canDismiss: true,
+				canDismiss: async (data?: any, role?: string) => role !== 'gesture',
 				presentingElement: this.routerOutlet.nativeEl,
 				componentProps: {
 					fromName: this.key?.name,
@@ -138,7 +138,7 @@ export class ConversationDetailPage implements OnInit, AfterViewInit {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: MessageImportModal,
-				canDismiss: true,
+				canDismiss: async (data?: any, role?: string) => role !== 'gesture',
 				presentingElement: this.routerOutlet.nativeEl,
 				componentProps: {
 					fromName: this.contact?.name,
@@ -172,7 +172,7 @@ export class ConversationDetailPage implements OnInit, AfterViewInit {
 			const modal: HTMLIonModalElement = await this.modalController
 				.create({
 					component: MessageShareModal,
-					canDismiss: true,
+					canDismiss: async (data?: any, role?: string) => role !== 'gesture',
 					presentingElement: this.routerOutlet.nativeEl,
 					componentProps: {
 						message,
@@ -189,7 +189,7 @@ export class ConversationDetailPage implements OnInit, AfterViewInit {
 			const modal: HTMLIonModalElement = await this.modalController
 				.create({
 					component: MessageViewModal,
-					canDismiss: true,
+					canDismiss: async (data?: any, role?: string) => role !== 'gesture',
 					presentingElement: this.routerOutlet.nativeEl,
 					componentProps: {
 						message,

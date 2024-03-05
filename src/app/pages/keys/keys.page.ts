@@ -35,7 +35,7 @@ export class KeysPage implements OnDestroy {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: KeyAddModal,
-				canDismiss: true,
+				canDismiss: async (data?: any, role?: string) => role !== 'gesture',
 				presentingElement: this.routerOutlet.nativeEl
 			});
 
@@ -80,7 +80,7 @@ export class KeysPage implements OnDestroy {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: KeyShareModal,
-				canDismiss: true,
+				canDismiss: async (data?: any, role?: string) => role !== 'gesture',
 				presentingElement: this.routerOutlet.nativeEl,
 				componentProps: {
 					key

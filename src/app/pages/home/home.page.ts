@@ -39,7 +39,7 @@ export class HomePage {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: ConversationAddModal,
-				canDismiss: true,
+				canDismiss: async (data?: any, role?: string) => role !== 'gesture',
 				presentingElement: this.routerOutlet.nativeEl
 			});
 
