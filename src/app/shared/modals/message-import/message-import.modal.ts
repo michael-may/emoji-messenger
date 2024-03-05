@@ -99,7 +99,7 @@ export class MessageImportModal {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: QRScanModal,
-				swipeToClose: true,
+				canDismiss: true,
 				presentingElement: this.elementRef.nativeElement
 			});
 

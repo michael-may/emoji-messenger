@@ -51,7 +51,7 @@ export class ConversationAddModal {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: ContactAddModal,
-				swipeToClose: true,
+				canDismiss: true,
 				presentingElement: this.elementRef.nativeElement
 			});
 
@@ -62,7 +62,7 @@ export class ConversationAddModal {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: KeyAddModal,
-				swipeToClose: true,
+				canDismiss: true,
 				presentingElement: this.elementRef.nativeElement
 			});
 
