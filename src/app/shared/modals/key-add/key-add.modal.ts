@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 
 import { EncryptionKey, KeyService } from '../../../_core/services/key.service';
@@ -10,11 +10,11 @@ import { EncryptionKey, KeyService } from '../../../_core/services/key.service';
 	styleUrls: ['./key-add.modal.scss']
 })
 export class KeyAddModal {
-	public newKeyForm = new FormGroup(
+	public newKeyForm = new UntypedFormGroup(
 		{
-			name: new FormControl('', [Validators.required, Validators.minLength(1)]),
-			password: new FormControl('', Validators.minLength(6)),
-			passwordConfirm: new FormControl('', Validators.minLength(6))
+			name: new UntypedFormControl('', [Validators.required, Validators.minLength(1)]),
+			password: new UntypedFormControl('', Validators.minLength(6)),
+			passwordConfirm: new UntypedFormControl('', Validators.minLength(6))
 		},
 		{ validators: this.passwordsMatch.bind(this) }
 	);
@@ -61,7 +61,7 @@ export class KeyAddModal {
 		this.modalController.dismiss();
 	}
 
-	private passwordsMatch(group: FormGroup) {
+	private passwordsMatch(group: UntypedFormGroup) {
 		const password = group.get('password');
 		const confirm = group.get('passwordConfirm');
 

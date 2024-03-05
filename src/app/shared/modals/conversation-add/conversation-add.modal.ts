@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -29,11 +29,11 @@ export class ConversationAddModal {
 			map(arr => arr.sort((a, b) => a.created - b.created))
 		);
 
-	public newConversationForm = new FormGroup(
+	public newConversationForm = new UntypedFormGroup(
 		{
-			name: new FormControl('', Validators.required),
-			to: new FormControl('', Validators.required),
-			from: new FormControl('', Validators.required)
+			name: new UntypedFormControl('', Validators.required),
+			to: new UntypedFormControl('', Validators.required),
+			from: new UntypedFormControl('', Validators.required)
 		}
 	);
 

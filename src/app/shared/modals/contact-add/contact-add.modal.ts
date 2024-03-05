@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ModalController, ToastController } from '@ionic/angular';
 import jsQR from 'jsqr';
 import { ByteChunk, Chunk } from 'jsqr/dist/decoder/decodeData';
@@ -16,11 +16,11 @@ import { QRScanModal } from '../qr-scan/qr-scan.modal';
 })
 export class ContactAddModal {
 
-	public newContactForm = new FormGroup(
+	public newContactForm = new UntypedFormGroup(
 		{
-			name: new FormControl('', [Validators.required, Validators.minLength(1)]),
-			publicKey: new FormControl('', Validators.required),
-			file: new FormControl('')
+			name: new UntypedFormControl('', [Validators.required, Validators.minLength(1)]),
+			publicKey: new UntypedFormControl('', Validators.required),
+			file: new UntypedFormControl('')
 		}
 	);
 
