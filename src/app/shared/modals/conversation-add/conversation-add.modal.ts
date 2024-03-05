@@ -51,7 +51,7 @@ export class ConversationAddModal {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: ContactAddModal,
-				canDismiss: true,
+				canDismiss: async (data?: any, role?: string) => role !== 'gesture',
 				presentingElement: this.elementRef.nativeElement
 			});
 
@@ -62,7 +62,7 @@ export class ConversationAddModal {
 		const modal: HTMLIonModalElement = await this.modalController
 			.create({
 				component: KeyAddModal,
-				canDismiss: true,
+				canDismiss: async (data?: any, role?: string) => role !== 'gesture',
 				presentingElement: this.elementRef.nativeElement
 			});
 

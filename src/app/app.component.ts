@@ -70,7 +70,7 @@ export class AppComponent implements OnInit, OnDestroy {
 			const modal: HTMLIonModalElement = await this.modalController
 				.create({
 					component: IntroModal,
-					canDismiss: true,
+					canDismiss: async (data?: any, role?: string) => role !== 'gesture',
 					presentingElement: this.routerOutlet.nativeEl
 				});
 
